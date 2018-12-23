@@ -9,6 +9,38 @@ $ python run.py
 ```
 访问：http://127.0.0.1:5000/
 
+## 项目目录
+```
+.
+├── README.md
+├── run.py
+├── app_api
+│   ├── __init__.py
+│   ├── models.py
+│   ├── todolist.db
+│   ├── urls.py
+│   └── views.py
+├── app_html
+│   ├── __init__.py
+│   ├── urls.py
+│   └── views.py
+├── images
+│   └── main.png
+├── static
+│   ├── css
+│   │   ├── element-ui@2.4.11.css
+│   │   ├── fonts
+│   │   │   └── element-icons.woff
+│   │   └── main.css
+│   └── js
+│       ├── axios@0.18.0.min.js
+│       ├── element-ui@2.4.11.js
+│       └── vue@2.5.21.min.js
+└── templates
+    └── index.html
+
+```
+
 ## 使用框架
 Flask + Vue.js + ElementUI
 
@@ -35,14 +67,14 @@ html文件中，发现属性之间多了一个逗号
 <el-button type="primary" @click="addItem">添加</el-button>
 ```
 
->参考
+>参考:
 >https://blog.csdn.net/xuelang532777032/article/details/78356657
 
 ### 2、刷新网页出现未渲染的页面
 正常来说都是先加载页面，最后加载js
 现在要先加载js，再加载页面
 
->参考：
+>参考:
 >https://www.cnblogs.com/chuanzhou/p/7467655.html
 
 ### 3、flask不渲染页面直接返回

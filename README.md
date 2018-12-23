@@ -2,15 +2,15 @@
 
 ![](images/main.png)
 
+## 使用框架
+Python3.6 + Flask + Vue.js + ElementUI
+
 ## 运行方式
 
 ```
 $ python run.py
 ```
 访问：http://127.0.0.1:5000/
-
-## 使用框架
-Flask + Vue.js + ElementUI
 
 ## 项目目录
 ```
@@ -160,6 +160,7 @@ style="width:100px"
 
 ## 附录
 资源下载：
+
 https://unpkg.com/element-ui/lib/theme-chalk/index.css
 
 https://unpkg.com/element-ui/lib/index.js

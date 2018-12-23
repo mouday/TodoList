@@ -2,6 +2,13 @@
 
 ![](images/main.png)
 
+## 运行方式
+
+```
+$ python run.py
+```
+访问：http://127.0.0.1:5000/
+
 ## 使用框架
 Flask + Vue.js + ElementUI
 

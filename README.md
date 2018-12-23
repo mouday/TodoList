@@ -9,6 +9,9 @@ $ python run.py
 ```
 访问：http://127.0.0.1:5000/
 
+## 使用框架
+Flask + Vue.js + ElementUI
+
 ## 项目目录
 ```
 .
@@ -41,14 +44,13 @@ $ python run.py
 
 ```
 
-## 使用框架
-Flask + Vue.js + ElementUI
-
-
 ## 参考文档
 Vue.js：https://cn.vuejs.org/
+
 ElementUI： http://element-cn.eleme.io/
+
 flask-restful： https://flask-restful.readthedocs.io/
+
 flask：http://flask.pocoo.org/
 
 ## 遇到的坑
@@ -79,6 +81,7 @@ html文件中，发现属性之间多了一个逗号
 
 ### 3、flask不渲染页面直接返回
 flask使用的jinja2的模板也用`{{ }}`插值替换，所以会和Vue.js的模板渲染冲突
+
 要实现前后端分离，后端提供原始页面和 接口，前端渲染，就要直接返回原始页面
 ```python
 from flask import Flask, send_file
@@ -158,9 +161,14 @@ style="width:100px"
 ## 附录
 资源下载：
 https://unpkg.com/element-ui/lib/theme-chalk/index.css
+
 https://unpkg.com/element-ui/lib/index.js
+
 https://unpkg.com/axios@0.18.0/dist/axios.min.js
+
 https://unpkg.com/element-ui@2.4.11/lib/theme-chalk/fonts/element-icons.woff
 
+
 发现一个vue.js 和 element 搭建的一个后台管理界面,可供参考：
+
 https://github.com/taylorchen709/vue-admin

@@ -98,7 +98,7 @@
 
                 updateItem: function (uid, status) {
                     // 提交json格式数据 payload
-                    axios.patch("/api/item", {
+                    axios.put("/api/item", {
                         uid: uid,
                         status: status
                     })

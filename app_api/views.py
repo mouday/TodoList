@@ -38,7 +38,7 @@ class TaskResource(Resource):
         TaskModel.delete().where(TaskModel.id == uid).execute()
         return {"message": "删除成功"}
 
-    def patch(self):
+    def put(self):
         uid = request.json.get("uid")
         status = request.json.get("status")
         TaskModel.update(status=status).where(TaskModel.id == uid).execute()

@@ -2,126 +2,98 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
-    <title>TodoList</title>
+    <meta charset="utf-8"/>
+    <title>数据中心</title>
     <link rel="stylesheet" href="/static/css/element-ui@2.4.11.css">
     <link rel="stylesheet" href="/static/css/main.css">
     <script src="/static/js/vue@2.5.21.min.js"></script>
     <script src="/static/js/element-ui@2.4.11.js"></script>
     <script src="/static/js/axios@0.18.0.min.js"></script>
-    
 </head>
 
 <body>
+<div id="app">
+    <el-container style="border: 1px solid #eee">
+        <el-header style="text-align: left; font-size: 24px">
+         <span>数据中心</span>
+        </el-header>
     <el-container>
-        <div id="app">
-            <el-header>
-                <h2>TodoList</h2>
-            </el-header>
 
+            <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
+            <el-menu :default-openeds="['1']">
+                <el-submenu index="1">
+                    <template slot="title"><i class="el-icon-menu"></i>数据库</template>
+                    {% for table in tables %}
+                        <el-menu-item index="1-{{ loop.index }}"
+                                      @click="getTableData('{{ table }}')">{{ table }}</el-menu-item>
+                    {% endfor %}
+
+                </el-submenu>
+
+            </el-menu>
+        </el-aside>
+
+
+        <el-container style="border: 1px solid #eee">
             <el-main>
-                <!-- 添加任务表单开始 -->
-                <el-form :inline="true" :model="form">
 
-                    <el-form-item label="事项">
-                        <el-input v-model="form.title" placeholder="事项名称" style="width:300px"></el-input>
-                    </el-form-item>
+                <el-table :data=tableData border>
 
-                    <el-form-item>
-                        <el-button type="primary" @click="addItem">添加</el-button>
-                    </el-form-item>
-                </el-form>
-                <!-- 添加任务表单结束 -->
+                <template v-for='(title, index) in tableTitle'>
+                  <el-table-column
+                    :show-overflow-tooltip="true"
+                    :prop="title"
+                    :label="title"
+                    :key="index"
+                    width="">
+                  </el-table-column>
+                </template>
 
-                <!-- 显示任务表格开始 -->
-                <el-table :data="tasks" border style="width: 100%">
-                    <el-table-column type="index"></el-table-column>
-                    <el-table-column prop="create_time" label="添加时间" width="180px"></el-table-column>
-                    <el-table-column prop="title" label="事项"></el-table-column>
-                    <el-table-column label="完成进度" width="150px">
-                        <template slot-scope="scope">
-                            <el-select @change="updateItem(scope.row.id, scope.row.status)" v-model="scope.row.status"
-                                size="mini" placeholder="请选择">
-                                <el-option v-for="state in status" :key="state.id" :label="state.title" :value="state.id">
-                                </el-option>
-                            </el-select>
-                        </template>
-                    </el-table-column>
-                    <el-table-column label="操作" width="100">
-                        <template slot-scope="scope">
-                            <el-button size="mini" type="danger" @click="deleteItem(scope.row.id)"><i class="el-icon-delete"></i>
-                                删除</el-button>
-                        </template>
+            <el-table-column label="编辑">
+            <template slot-scope="scope">
+　　　　　　<el-button type="primary" @click="" size="small">编辑</el-button>
+                　</template>　
+            </el-table-column>
+                <el-table-column label="删除">
+            <template slot-scope="scope">
+　　　　　　<el-button type="danger" @click="" size="small">删除</el-button>
+            　</template>
+               </el-table-column>
                 </el-table>
-                <!-- 显示任务表格结束 -->
+
             </el-main>
+
+        </el-container>
+     </el-container>
+
     </el-container>
 
-    </div>
-    <script>
-        const app = new Vue({
-            el: "#app",
-            data: {
-                form: {},
-                tasks: [],
-                status: []
-            },
-            methods: {
-                getItems: function () {
-                    axios.get("/api/item")
-                        .then((response) => {
-                            this.tasks = response.data
-                        })
-                },
-
-                addItem: function () {
-                    // 提交json格式数据 payload
-                    axios.post("/api/item", this.form)
-                        .then((response) => {
-                            this.getItems();
-                            this.$message.success(response.data.message)
-                        })
-                },
-
-                deleteItem: function (uid) {
-                    // 类似get方式提交
-                    axios.delete("/api/item", {
-                        params: {
-                            uid: uid
-                        }
-                    })
-                        .then((response) => {
-                            this.getItems();
-                            this.$message.warning(response.data.message)
-                        })
-                },
-
-                updateItem: function (uid, status) {
-                    // 提交json格式数据 payload
-                    axios.put("/api/item", {
-                        uid: uid,
-                        status: status
-                    })
-                        .then((response) => {
-                            this.getItems();
-                            this.$message.success(response.data.message)
-                        })
-                },
-
-                getStatus: function () {
-                    axios.get("/api/status")
-                        .then((response) => {
-                            this.status = response.data
-                        })
-                },
-            },
-            created() {
-                this.getItems();
-                this.getStatus();
+</div>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            tableData: [],
+            tableTitle: []
+        },
+        methods: {
+            getTableData: function (table) {
+                // 类似get方式提交
+                axios.get("/getTableData", {
+                    params: {
+                        table: table
+                    }
+                }).then((response) => {
+                    this.tableData = response.data.items;
+                    this.tableTitle = response.data.titles;
+                    this.$message.success(response.data.message)
+            })
             }
-        })
+        }
 
-    </script>
+    })
+
+</script>
 </body>
 
 </html>

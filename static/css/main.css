@@ -1,4 +1,13 @@
 body {
-    width: 800px;
     margin: 0 auto;
+}
+
+.el-header {
+    background-color: #409EFF;
+    color: #ffffff;
+    line-height: 60px;
+}
+
+.el-aside {
+    color: #333;
 }

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TodoList</title>
+    <link rel="stylesheet" href="/static/css/bootstrap@3.3.7.min.css">
+</head>
+
+<style>
+    body{
+        width: 800px;
+        margin: 0 auto;
+    }
+</style>
+<body>
+<h1>TodoList</h1>
+
+<form action="/add" method="post" class="form-inline">
+    <input type="text" name="event" class="form-control">
+    <input type="submit" class="form-control">
+</form>
+
+<hr>
+<table class="table " style="width: 500px;">
+
+    <tbody>
+     <tr class="activate">
+        <th>创建时间</th>
+        <th>事件</th>
+        <th>操作</th>
+    </tr>
+    {% for row in rows %}
+    <tr>
+        <td>{{ row.create_time }}</td>
+        <td>{{ row.event }}</td>
+        <td><a href="/delete/{{ row.id }}">删除</a></td>
+    </tr>
+    {% end %}
+
+    </tbody>
+</table>
+
+</body>
+</html>

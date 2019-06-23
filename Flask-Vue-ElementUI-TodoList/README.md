@@ -3,7 +3,11 @@
 ![](images/main.png)
 
 ## 使用框架
-Python3.6 + Flask + Vue.js + ElementUI
+1. Python 3.6
+2. Flask 1.0.3
+3. Vue.js@2.5.21
+4. ElementUI@2.4.11
+5. axios@0.18.0
 
 ## 运行方式
 
